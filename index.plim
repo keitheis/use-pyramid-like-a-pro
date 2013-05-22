@@ -1,3 +1,5 @@
+-namespace module="utils.formatters" name="formatters" inheritable="True"
+
 doctype 5
 html lang="en"
   head
@@ -6,6 +8,8 @@ html lang="en"
     meta name="viewport" content="width=792, user-scalable=no"
     meta http-equiv="x-ua-compatible" content="ie=edge"
     link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css"
+    link rel="stylesheet" href="pygment_style.css"
+    link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:600' rel='stylesheet' type='text/css'
 
     style
       #Cover h2 {
@@ -33,6 +37,18 @@ html lang="en"
       #SeeMore img {
         width:0.72em;
         height:0.72em;
+      }
+      /* pygments style */
+      .linenodiv {
+        margin-right: 0.6em;
+      }
+      .slide pre code {
+        font-size: 28px;
+        font-family: 'Source Code Pro', sans-serif;
+      }
+      .slide pre code.bigger {
+        font-size: 30px;
+        font-family: 'Source Code Pro', sans-serif;
       }
 
   body.list
@@ -96,14 +112,10 @@ html lang="en"
     section class="slide"
       div
         h2 Code Samples
-        pre
-          <code>&lt;!DOCTYPE html&gt;</code>
-          <code>&lt;html lang="en"&gt;</code>
-          <code><mark>&lt;head&gt;</mark> <mark class="comment">&lt;!--Comment--&gt;</mark></code>
-          <code>    &lt;title&gt;Shower&lt;/title&gt;</code>
-          <code>    &lt;meta charset="<mark class="important">UTF-8</mark>"&gt;</code>
-          <code>    &lt;link rel="stylesheet" href="screen.css"&gt;</code>
-          <code><mark>&lt;/head&gt;</mark></code>
+        == formatters.code('python', """
+            print("Hello World!")
+              print("Hello World!")
+            print("Hello World!")""")
       
     
     section class="slide cover" id="Picture"
