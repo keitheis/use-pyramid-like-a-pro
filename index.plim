@@ -3,156 +3,844 @@
 doctype 5
 html lang="en"
   head
-    title Page Title
+    title Use Pyramid Like a Pro
     meta charset="utf-8"
     meta name="viewport" content="width=792, user-scalable=no"
     meta http-equiv="x-ua-compatible" content="ie=edge"
     link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css"
     link rel="stylesheet" href="pygment_style.css"
-    link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:600' rel='stylesheet' type='text/css'
+    /*link rel="stylesheet" href="pastie.css"*/
+    link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"
+    link rel="shortcut icon" href="pylons.ico"
 
-    style
-      #Cover h2 {
-        margin:30px 0 0;
-        color:#FFF;
+    -scss
+      /*$pylons_color: #f89929;*/
+      $pylons_color: #f8c836;
+      $pylons_blue: #124a7e;
+      $pylons_red: #e00100;
+      $grey: #2A2B2D;
+      @font-face {
+          font-family: 'Love Ya Like A Sister', cursive;
+          src: url('fonts/LoveYaLikeASister.ttf') format('truetype');
+      }
+      @font-face {
+          font-family: 'Ubuntu Mono';
+          src: url('fonts/UbuntuMono-R.ttf') format('truetype');
+      }
+      @font-face {
+          font-family: 'Ubuntu';
+          src: url('fonts/Ubuntu-R.ttf') format('truetype');
+      }
+      mark {
+        padding-left: 8px;
+        padding-right: 8px;
+        border-radius: 6px;
+        color: #f00;
+      }
+      .red { color: $pylons_red; }
+      .blue { color: $pylons_blue; }
+      .list {
+        background:#3f4144 url(pictures/linen.png);
+        @include retina {
+          background-image:url(pictures/linen@2x.png);
+          background-size: 256px;
+        }
+        a {
+          border-bottom:0.1em solid;
+          color: $pylons_blue;
+          }
+        .slide {
+          &:after {
+            font-family: 'Love Ya Like A Sister', cursive;
+            color: darken($pylons_color, 30%);
+            text-shadow: 2px 2px #000;
+          }
+          // Current
+          &:target {
+            &:before {
+              box-shadow:
+                0 0 0 1px darken($pylons_color, 10%),
+                0 0 0 10px $pylons_color,
+                0 20px 50px rgba($grey, 0.6);
+              @media (max-width:$break) {
+                box-shadow:
+                  0 0 0 1px darken($pylons_color, 10%),
+                  0 0 0 10px $pylons_color,
+                  0 20px 50px rgba($grey, 0.6);
+                }
+              }
+            &:after {
+              text-shadow:0 1px 1px rgba($grey, 0.6);
+              color:$pylons_color;
+              }
+            }
+        }
+      }
+      img.photo_border {
+          box-shadow:
+            0px 0px 0px 2px rgba(0,0,0,0.6),
+            0px 0px 0px 14px #fff,
+            0px 0px 0px 18px rgba(0,0,0,0.1),
+            6px 6px 8px 17px #555;
+      }
+      .caption h1 {
+        color: $pylons_color;
+        text-shadow: 6px 6px #000;
+      }
+      .caption {
+        color: $pylons_color;
+        text-shadow: 3px 3px #000;
+      }
+      .badge a {
+          background: none;
+      }
+      .text-center {
         text-align:center;
-        font-size:70px;
       }
-      #Cover p {
-        margin:10px 0 0;
-        text-align:center;
+      .slide a {
+        color: $pylons_blue;
+        border-bottom: none;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .smaller-font {
+        font-size: smaller;
+      }
+      .white-text {
         color:#FFF;
-        font-style:italic;
-        font-size:20px;
       }
-      #Cover p a {
-        color:#FFF;
+      .comment {
+          color: rgb(153, 153, 153);
       }
-      #Picture h2 {
-        color:#FFF;
+      .slide#Cover {
+        border-top: none;
+        h2 {
+          font-family: 'Ubuntu', sans-serif;
+          margin:30px 0 0;
+          color:#FFF;
+          text-shadow: 3px 3px #000;
+          font-size: 2em;
+          .a {
+            color:#F33;
+          }
+        }
+        p {
+          font-family: 'Ubuntu', sans-serif;
+          margin: 0 0 0;
+          font-size: 1.25em;
+          a {
+            color:#FFF;
+            &:hover {
+              color: #FF3;
+            }
+          }
+          .social {
+            font-size: 3em;
+          }
+          &.author {
+            font-size: 1.1em;
+            text-shadow: 2px 2px #000;
+            margin:10px 0 0;
+            font-style:italic;
+          }
+        }
       }
-      #SeeMore h2 {
-        font-size:100px
+      .slide {
+        border-top: 6px solid $pylons_color;
+        p {
+          /*font-size: 110%;*/
+          &.note {
+            color: $pylons_red;
+          }
+        }
+        blockquote p {
+          font-size: 2em;
+        }
+        h2 {
+          img {
+            vertical-align: text-top;
+          }
+          color: lighten($pylons_blue, 10%);
+        }
       }
-      #SeeMore img {
-        width:0.72em;
-        height:0.72em;
+      .slide.shout h2 {
+        padding-bottom: 30px;
+        mark {
+          margin-top 16px;
+        }
       }
+      h2 mark.mark {
+        line-height: 1.4;
+        padding-left: 80px;
+        padding-right: 80px;
+      }
+      .slide li {
+        2.2em;
+      }
+      .Picture h2 {
+        color: #FFF;
+      }
+      #SeeMore {
+        h2 {
+          font-size: 6.25em;
+        }
+        img {
+          width:0.72em;
+          height:0.72em;
+        }
+        font-style: normal;
+      }
+
+      .shout {
+        &.medium {
+          h2 {
+            font-size: 7.5em;
+          }
+        }
+        &.small {
+          h2 {
+            font-size: 5.625em;
+          }
+        }
+        &.x-small {
+          h2 {
+            font-size: 4em;
+            mark {
+              line-height: 1.4;
+            }
+          }
+        }
+      }
+
+      /* font-awesome fix on shower */
+      .slide i.icon {
+        text-indent: 0;
+        font-style: normal;
+        &.alien {
+          color: #999;
+        }
+      }
+
       /* pygments style */
       .linenodiv {
         margin-right: 0.6em;
       }
       .slide pre code {
-        font-size: 28px;
-        font-family: 'Source Code Pro', sans-serif;
-      }
-      .slide pre code.bigger {
-        font-size: 30px;
-        font-family: 'Source Code Pro', sans-serif;
+        font-size: 1.2em;
+        font-family: 'Ubuntu Mono', sans-serif;
+        &.bigger {
+          font-size: 1.3em;
+        }
       }
 
   body.list
 
     header.caption
-      h1 Shower Presentation Engine
-      p Yours Truly, Famous Inc.
+      h1 Use Pyramid Like a Pro
+      p Keith Yang
 
-    section#Cover.slide.cover
+    section#Cover.slide.cover: div
+        h2 Use Pyramid
+        h2 Like
+          ,
+          span.a
+            , a
+          Pro
+        p.author
+          a href="http://quest.keitheis.org" Keith Yang
+        p
+          span.white-text
+            , @keitheis
+        / p
+          span.social.next
+            i.icon.icon-twitter.icon-light
+            i.icon.icon-linkedin.icon-light
+            i.icon.icon-google-plus.icon-light
+            i.icon.icon-facebook.icon-light
+            i.icon.icon-github.icon-light
+
+        img (src="pictures/pyramid-aliens2-1920X1200.jpg"
+            width="100%"
+            title="Pyramid Aliens Picture by Felix LaFlamme"
+            alt="Pyramid Aliens Picture by Felix LaFlamme")
+        <!-- Designed and done by Felix LaFlamme, http://www.felixlaflamme.com/ -->
+
+    section.slide: div
+        h2
+          span.red.pull-right @keitheis
+          Keith Yang
+        ul
+          li, architect.py in
+            a href="http://www.biideal.com/"
+              img src="pictures/biideal_logo.png" alt="biideal logo" title="biideal"
+          li, Organizer/Coordinator in
+            a href="http://taipei.python.org.tw/"
+              img src="pictures/taipei.py.logo.png" alt="Taipei.py Logo" title="Taipei.py"
+          li, Web Lead in
+            a href="http://tw.pycon.org/2013/"
+              | PyCon Taiwan 2013
+    
+    section.slide: div
+        .pull-right
+          a href="http://www.biideal.com/"
+            img src="pictures/biideal_logo.png" alt="biideal logo" title="biideal"
+        h2 Some fun fact
+        ul
+          li New EC Startup
+            ,
+            i.red.icon.icon-shopping-cart
+          li.next
+            i.red.icon.icon-rotate-right
+            ,
+            Re-built on Nov.2012,
+            ,
+            Apr. 2013 online
+          li.next Agile style
+            ,
+            i.red.icon.icon-magic
+          li.next Powered by
+            ,
+            img src="pylons.ico" alt=""
+            ,
+            Pyramid
+    
+    section.slide: div
+        .pull-right
+          a href="http://taipei.python.org.tw/"
+            img src="pictures/taipei.py.logo.png" alt="Taipei.py Logo" title="Taipei.py"
+        h2 Taipei.py
+        ul
+          li Monthly Meetup
+          li.next to Weekly Meetup
+        p.note.next
+          Taipei.py 的奇幻漂流
+
+    section.slide.shout: div
+        h2
+          a href="http://docs.pylonsproject.org/en/latest/docs/pyramid.html"
+            img src="pictures/pyramid-logo.png" alt="Pyramid Official"
+          br Core
+    
+    section.slide.shout.medium: div
+        h2
+          Choice
+          ,
+          i.icon.icon-hand-left
+          br
+          span.next
+            Like
+          br
+          span.next
+            Human Being
+    
+    section.slide: div
+        h2 Being What?
+          ,
+          span.next Alien?
+            ,
+            i.alien.icon.icon-github
+        ol
+          li Know your future
+          li Know your scale
+          li Know your tool sets
+          li Know your team, goal, and time frames
+        
+        p.note.next from future import everything
+
+    section.slide: div
+        h2 Choose
+          ,
+          span.next What?
+            ,
+            i.icon.icon-hand-left.icon-spin
+        ol
+          li
+            code Web Framework(s)
+          li 
+            -for name in ['SQL', 'NoSQL', 'ORM', 'Query Helper', 'ALL REDIS?']
+              code = name
+                
+          li
+            code Message Queues
+            ,
+            , and/or
+            code Background Workers
+          li
+            -for name in ['Template', 'Session', 'API?', 'RESTful', 'RESTlike']
+              code = name
+    
+        p.note.next Too many to choose but usually or eventually you have to
+
+    section.slide.shout.medium: div
+        h2 Architecture,
+          br Architecture,
+          br Architecture.
+
+    section.slide.shout: div
+        h2
+          That's why
+          br
+          mark.mark.next
+            Flexibility
+          br
+          Counts
+
+    section.slide: div
+        h2, The Power of Pyramid
+          | (
+          a href="http://www.pylonsproject.org/"
+            Pylons Project
+          | )
+        ol
+          li, Flexibility: from minimal to full stack
+            span.next <code>seriously ready</code>
+          li
+            a href="http://www.slideshare.net/rachbelaid/pyramid-views-20820325" title="Pyramid views"
+              Views config & varies routes
+          li
+            a href="http://docs.pylonsproject.org/en/latest/docs/pyramid.html#pyramid-add-on-documentation"
+              Add-ons and friends
+          li, Reliability, Agilibility, Simplicity and <code>Community</code>
+          li.next <code>Fun</code> to learn
+
+    section.slide.shout.small: div
+          h2 Python 3
+            br Ready
+            br from Pyramid 1.3
+        
+    section.slide: div
+        h2, What Pyramid is
+          <mark>NOT</mark>
+        p
+          Not the first web framework
+          br you should learn together with
+          br your first programming language (e.g. Python).
+
+    section.slide: div
+        h2 Rumors
+        p
+          i “Use NoSQL and you will be good with schema free.”
+        p Imagine a type free programming language,
+          br, which
+          code
+            | int(“0”) + str(1)
+          ,
+          , will be so fine.
+
+    section.slide: div
+        h2 Rumors (cont.)
+        p
+          i “Why you should use this web framework”
+        p Said, Django, Flask, Web2py, Bottle, Rails, ...
+          br, all the excellent choices.
+
+        p.note.next
+          Also known as「不要欺騙小孩子」
+          ,
+          i.icon.icon-hand-up
+          br
+          span.next.comment.smaller-font
+            課本上有寫「政黨體質的健全、民主、清廉與執政能力關係人民的幸福」
+          
+    section.slide.shout: div
+        h2 I say:
+          br
+          “Just use Python”
+        img.pull-right src="pictures/pythocat.png" width="28%" alt="pythocat icon on github"
+        p.note.next
+          i.icon.icon-remove
+          ,
+          不解釋。
+
+    section.slide: div
+        h2 Fundamental Pyramid School
+        p
+          ul
+            li Understand Pyramid Request
+            li Separated logic of views, data and business
+        p.note.next
+          For any MVC-like Framework
+          br
+          M or C is not for business logic
+
+    section.slide: div
+        h2 Fundamental Pyramid School (cont.)
+        ul
+          li Super powerful Views
+          li Flexible Routes
+          li Context driven
+
+    section.slide: div
+        h2 Database: to SQL
+        ul
+          li Postgres, professional or enthusiastic
+          li MariaDB, new MySQL candidates, or lazy at first
+          li SQLite for development, personal app, or no production-level needed
+
+    section.slide: div
+        h2 Database: to NoSQL
+        ul
+          li To name a few:
+            ul
+              li MongoDB, Riak, Cassandra, Redis, Hadoop, ...
+          li, When you arrived here you'll learn these class. 
+            br Before that, just keep calm on them.
+
+    section.slide: div
+        h2 Database: None
+        h2
+          mark.next
+            Perfect
+        p.note
+          No default binding ORM, no bother.
+
+    section.slide: div
+        h2 To ORM
+        ul
+          li SQLAlchemy ORM
+          li, Read 
+            a href="http://doc.ponyorm.com/#what-is-pony-orm"
+              What is Pony ORM?¶
+
+          li Django ORM (not really a choice here)
+            img.pull-right src="pictures/mango_fotor.jpg" alt="" title="台灣愛文芒果"
+          li
+            a href="http://peewee.readthedocs.org/"
+              Peewee 
+            ,
+            Django ORM like
+          li
+            MongoEngine, MongoKit, Ming, ...
+
+        p.note.pull-right.next
+          Have you tried Taiwan Mango?
+        
+    section.slide: div
+        h2 Not to ORM
+        ul
+          li SQLAlchemy Core
+          li 
+            a href="http://mosql.mosky.tw/"
+              , MoSQL
+            , v0.2 by
+            a href="http://mosky.tw/" mosky
+            , , also on
+            a href="https://github.com/moskytw/mosql"
+              i.icon.icon-github
+            ,
+            span.next
+              | (yesterday v0.1.6)
+          li Pure SQL Dialects: hard code driver Query
+            br
+            | (sqlite3, psycopg2, mysql-python, ...)
+          li Pure NoSQL Dialects
+
+    section.slide: div
+        h2 Templates: Mako or Jinja2
+        ul
+          li Mako - pythonic
+            span.next
+              |, or not, depending on you with its nature
+            br by Mike Bayer (author of Alembic)
+          
+          li Jinja2
+            br, by
+              a href="http://lucumr.pocoo.org/"
+                Armin Ronacher
+              | , also Flask author 
+            ol
+              li Elegant
+              li Strict, more or less, magic
+
+    section.slide: div
+        h2 Templates (cont.) - Plim
+        ol
+          li, by Maxim Avanov
+            a href="https://github.com/2nd"
+              i.alien.icon.icon-github
+          li Ported from Slim template
+          li Clean HTML usage
+          li Built on Mako
+          li
+            code Fun
+            span.next and half hell on debug mode
+        p.note
+          , Guess what?
+          span.next
+            , You'll learn how to guess by using it
+            i.icon.icon-meh
+
+
+                
+    section.slide: div
+        h2 Templates (cont.) - Plim
+        == formatters.code('python', """
+            -for row in ['apple', 'banana', 'pineapple']
+              tr
+                -for col in ['juice', 'muffin', 'pie']
+                  td ${row.capitalize()} ${col}""")
+        p.note.next
+          -text filter="h"
+            That's all. No </blah blah things>.
+
+    section.slide: div
+        h2 Templates (cont.) - Chameleon
+        p
+          ZPT, Kid or Genshi lovers should give it a look
+        == formatters.code('genshi', """
+          <tr tal:repeat="row 'apple', 'banana', 'pineapple'">
+            <td tal:repeat="col 'juice', 'muffin', 'pie'">
+               ${row.capitalize()} ${col}
+            </td>
+          </tr>""")
+
+    section.slide: div
+        h2 Too many to introduce (again)
+        ul
+          li Celery, Python RQ
+          li RebbitMQ, ZeroMQ
+          li Redis, memcached
+          li Beaker, retools (both by <code>Ben Bangert</code>, Pylons 1 author)
+        p.note.next
+          Pylons 2? You got it: Pyramid.
+
+    section.slide: div
+        h2 Oh, Sentry
+        ul
+          li, by David Cramer (our Keynote speaker)
+          li, Awesome error events handle
+          li, Host by yourself or
+            a href="https://getsentry.com/"
+             | getsentry.com
+
+    section.slide: div
+        h2 My better practices
+        p
+          ul
+            li Separate the (DB) models and behaviors.
+            li.next Reproduce-able development database (Fixtures)
+            li.next Development mode optimization
+            li.next
+              a href="https://github.com/2nd/plim" title="Python port of Ruby's Slim template language built on top of the Mako Templates."
+                Plim template
+        p.note
+          , Double-edged swords
+          i.icon.icon-cut
+          , 
+          , use them carefully.
+
+    section.slide: div
+        h2 My better practices (cont.)
+        p
+          ul
+            li Explicit architecture (lib, tasks, schemas ... folders)
+              br
+              | with explicit nameing
+            li.next Focus on a utc module handles datetime & timezone
+            li.next Fundamental doc: README and doc/**/*.rst
+            li.next Avoid mess sys or deploy stuff in code repository
+              br if possible
+
+    section.slide.shout: div
+        h2, Minimal Viable
+          span.red Code
+            ,
+            i.icon.icon-code.smaller
+
+    section.slide: div
+        h2 My worser lesson 1
+        == formatters.code('python', """
+          def ugly_customized_routes(config, resource_route,
+                                     path=None,
+                                     actions="ICRUD",
+                                     resource_name=None):
+              ...""")
+        p.note
+          Not aesthetic route helper
+
+    section.slide: div
+        h2 My worser lesson 2
+        == formatters.code('python', """
+            print("This is too embarrassing to print")""")
+        p.note
+          , Lacking CI tests
+          i.icon.icon-meh title="meh!"
+          
+    section.slide: div
+        h2 Debug mode
+        .smaller-font
+        == formatters.code('python', """
+            if debug_notfound_route:
+                from .views.notfound import (
+                  NotFoundDebugView as NotFoundView
+                )
+            else:
+                from .views.notfound import NotFoundView
+            config.add_notfound_view(NotFoundView)""")
+
+    / section.Picture.slide.cover: div
+        h2
+          mark
+            Debug mode (cont.)
+        a style="background-color:black; filter:alpha(opacity=100); display:block; opacity:1; width:100%"
+          img style="opacity:0.77; filter:alpha(opacity=77);" src="pictures/debug_screen.png" width="100%" alt="" 
+
+    section.slide.cover: div
+        img src="pictures/debugtoolbar.png" width="100%" alt="Debugtoolbar"
+    
+    section.slide: div
+        h2 SQL Master
+        img.photo_border src="pictures/debug_sql.png" width="100%" alt="SQL on Debugtoolbar"
+    
+    section.slide: div
+        h2 Logging in the flow
+        img.photo_border src="pictures/debug_log.png" width="100%" alt="Logging on Debugtoolbar"
+    
+    section.slide
       div
-        h2 Shower Presentation Engine
-        p Brought you by
-          a href="http://pepelsbey.net" Vadim Makeev
-        img src="pictures/cover.jpg" alt=""
-        <!-- photo by John Carey, fiftyfootshadows.net -->
+        h2 Debug Debugtoolbar
+        == formatters.code('python', """
+          # Disable development performance killer
+          debugtoolbar.panels =
+              pyramid_debugtoolbar.panels.sqla.SQLADebugPanel
+              ...
+              #pyramid_debugtoolbar.panels.introspection.IntrospectionDebugPanel
+              #pyramid_debugtoolbar.panels.tweens.TweensDebugPanel
+              #pyramid_debugtoolbar.panels.routes.RoutesDebugPanel""")
+
+    section.slide: div
+        h2, Before your first
+          mark
+            | release
+        p
+          span.icon-stack
+            i.icon.blue.icon-sign-blank.icon-stack-base
+            i.icon.icon-terminal.icon-light
+          ,
+          Practice
+        ul
+          li Pshell (the force on production, use it carefully)
+          li Play Pyramid scripts
+          li Alembic Database Migration scripts (if using SQLAlchemy)
+
+    section.slide.shout.medium: div
+        h2, Save
+          i.red.icon.icon-ambulance
+          br Your Self
+          br In Time
+
+    section.slide: div
+        h2 Feel the power of Alembic
+        ul
+          li, by
+           a href="http://techspot.zzzeek.org/"
+            Mike Bayer (author of SQLAlchemy)
+          li Use op and sa instead your defined Models
+          == formatters.code('python', """
+              from alembic import op
+              import sqlalchemy as sa""")
+        p.note.next
+          Because YMWV (Your model WILL vary) between revisions.
+
+    section.slide.shout.x-small: div
+        h2
+          , alembic -c dev.ini
+          br
+          , revision 
+          mark
+            | --autogenerate
+          br
+          , -m "magic hour"
+
+    section.slide: div
+        h2 Encourage Refactor and Clean Code 
+        ul
+          li.next Feature development helps some.
+          li.next Clean code, testing and refactor helps
+            ,
+            mark
+              | everyone.
 
     section.slide
       div
-        h2 Shower Key Features
-        ol
-          li Built on HTML, CSS and vanilla JavaScript
-          li All modern browsers are supported
-          li Slide themes are separated from engine
-          li Fully keyboard accessible
-          li Printable to PDF
-        
-        p class="note" Shower ['ʃəuə] noun. A person or thing that shows.
-    
-
-    section class="slide"
-      div
-        h2 Plain Text on Your Slides
-        p
-          Lorem ipsum dolor sit amet, consectetur <a href="#4">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.
-
-    section class="slide"
-      div
-        h2 All Kind of Lists
-        ol 
-          li Simple lists are marked with bullets
-          li Ordered lists begin with a number
-          li You can even nest lists one inside another
-            ul 
-              li Or mix their types
-              li But do not go too far
-              li Otherwise audience will be bored
+        h2 From Web app to API
+        ul
+          li Reusable permission control
+          li Customized API render (extra work on JSON response)
+        == formatters.code('python', """
+          @view_defaults(renderer='api', permission='account')
+          class APIResourceView(APIBaseView, APIPagingMixin):
+              ...""")
           
-          li Look, seven rows exactly!
-    
 
-    section class="slide"
-      div
-        h2 Serious Citations
+    section.slide: div
+        h2 From Web app to API (cont.)
+        ul
+          li Views for API Forbidden and NotFound
+        == formatters.code('python', """
+          config.add_forbidden_view(
+            APIForbiddenView, path_info='/api/')
+          config.add_notfound_view(
+            APINotFoundView, path_info='/api/')""")
+        
+        p.note
+          | (no months or years needed for working)
+
+    section.slide: div
+        h2 API V2 Routes Ready
+        == formatters.code('python', """
+          from .api.routes import api_routes
+          config.include(api_routes, '/api/v1')""")
+        == formatters.code('python', """
+          from .api.v1.routes import api_routes as api_v1_routes
+          config.include(api_v1_routes, '/api/v1')
+          from .api.routes import api_routes as api_v2_routes
+          config.include(api_v2_routes, '/api/v2')""")
+
+    section.slide: div
         figure 
           blockquote 
-            p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
+            h2 哭吧你
           
-          figcaption Marcus Tullius Cicero
+        figcaption 現在每個人可獲得1 Pyramid。
+        hr
+        p.text-center 更彈性。
+            span.comment 要怎樣就怎樣。
+          br 更多元。
+            span.comment 做不完的決定。
+          br 更多頁。
+            span.comment 為什麼不立即開始讀讀不完的文件呢？
+        p.next
+          span.comment.pull-right # flickr 梗
       
-    
-    section class="slide"
-      div
-        h2 Code Samples
-        == formatters.code('python', """
-            print("Hello World!")
-              print("Hello World!")
-            print("Hello World!")""")
-      
-    
-    section class="slide cover" id="Picture"
-      div
-        h2 Pictures
-        img src="pictures/picture.jpg" alt="" 
-        <!-- photo by John Carey, fiftyfootshadows.net -->
-    
+    section#more_on_pylons.slide: div
+        h2 Much More
+        p
+          a href="http://www.pylonsproject.org"
+            img src="pictures/pylons-logo.png" alt="Pylons Project"
+          br
+          i.icon.icon-twitter
+          ,
+          | @pylons
 
-    section class="slide shout"
-      div
-        h2 You can even shout this way
-    
-    section class="slide"
-      div
-        h2 Inner Navigation
-        ol 
-          li Lets you reveal list items one by one
-          li class="next" To keep some key points
-          li class="next" In secret from audience
-          li class="next" But it will work only once
-          li class="next" Nobody wants to see the same joke twice
-      
-    
-    section class="slide shout" id="SeeMore"
-      div
+    section#thank_you.slide.shout: div
+        .pull-right
+          img src="pictures/pycontw2013-logo.png" alt="PyCon Taiwan 2013"
         h2
-          img src="pictures/logo.svg" alt="",
-          a href="https://github.com/shower/shower/" See more on GitHub
+          br
+          br, Thank You
+          i.red.icon.icon-thumbs-up
     
-
     p class="badge"
-      a href="https://github.com/shower/shower" Fork me on Github
+      a href="https://github.com/keitheis/use-pyramid-like-a-pro" Fork me on Github
 
     <!-- To hide progress bar from entire presentation just remove "progress" element.  -->
     .progress
       div
 
     script src="shower/shower.min.js" 
+    script
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
     <!-- Copyright © 2013 Yours Truly, Famous Inc. -->

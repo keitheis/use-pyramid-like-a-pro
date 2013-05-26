@@ -3,6 +3,9 @@ import re
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
+from pygments.lexer import RegexLexer, bygroups, using
+from pygments.token import Text, Generic, Name
+
 
 LINE_PARTS_RE = re.compile('(?P<indent>\s*)(?P<line>.*)\s*')
 
@@ -10,9 +13,14 @@ LINE_PARTS_RE = re.compile('(?P<indent>\s*)(?P<line>.*)\s*')
 def code(context, language_name, code_block,
          indent_spaces=4,
          default_indent='',
+         use_diff_lexer=False,
          line_numbers=False,
          css_class="source"):
-    lexer = get_lexer_by_name(language_name)
+    if use_diff_lexer:
+        lang_lexer = get_lexer_by_name(language_name)
+        lexer = make_diff_lexer(lang_lexer)
+    else:
+        lexer = get_lexer_by_name(language_name)
     formatter = CodeHtmlFormatter(linenos=line_numbers,
                                   indentspaces=indent_spaces,
                                   cssclass=css_class)
@@ -25,6 +33,32 @@ def code(context, language_name, code_block,
     print(result)
     #print(_indent_spaces(result))
     return result
+
+
+def make_diff_lexer(lang_lexer):
+    class DiffLexer(RegexLexer):
+        name = 'Diff'
+        aliases = ['diff']
+        filenames = ['*.diff']
+
+        tokens = {
+            'root': [
+                (r' .*\n', Text),
+                (r'\+.*\n', Generic.Inserted),
+                (r'-.*\n', Generic.Deleted),
+                (r'@.*\n', Generic.Subheading),
+                (r'Index.*\n', Generic.Heading),
+                (r'=.*\n', Generic.Heading),
+                (r'.*\n', Text),
+            ],
+            'code-content': [
+                (r'(.+?)()',
+                 bygroups(using(lang_lexer), Name.Tag),
+                 '#pop'),
+            ]
+        }
+
+    return DiffLexer()
 
 
 class CodeHtmlFormatter(HtmlFormatter):
@@ -52,11 +86,11 @@ class CodeHtmlFormatter(HtmlFormatter):
                     if (self._first_diff_spaces is None):
                         self._first_diff_spaces = (
                             level - self._first_indent_level)
-                    diff_levels = (
-                        (level - self._first_indent_level)
-                        / self._first_diff_spaces
-                    )
-                    spaces = ' ' * self.levelspaces * diff_levels
+                    diff_spaces = level - self._first_indent_level
+                    extra_spaces = diff_spaces % self._first_diff_spaces
+                    diff_levels = diff_spaces / self._first_diff_spaces
+                    spaces = ' ' * (self.levelspaces * diff_levels
+                                    + extra_spaces)
                 # it's a line of formatted code
                 line = '<code>' + default_indent + spaces + line + '</code>'
             yield i, line
