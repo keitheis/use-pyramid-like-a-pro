@@ -7,7 +7,7 @@ html lang="en"
     meta charset="utf-8"
     meta name="viewport" content="width=792, user-scalable=no"
     meta http-equiv="x-ua-compatible" content="ie=edge"
-    link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css"
+    link rel="stylesheet" href="theme/styles/screen.css"
     link rel="stylesheet" href="pygment_style.css"
     /*link rel="stylesheet" href="pastie.css"*/
     link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"
