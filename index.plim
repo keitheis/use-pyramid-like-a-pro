@@ -10,8 +10,8 @@ html lang="en"
     link rel="stylesheet" href="theme/styles/screen.css"
     link rel="stylesheet" href="pygment_style.css"
     /*link rel="stylesheet" href="pastie.css"*/
-    link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"
-    link rel="shortcut icon" href="pylons.ico"
+    link rel="stylesheet" href="font-awesome/css/font-awesome.css"
+    link rel="shortcut icon" href="pylons.png"
 
     -scss
       /*$pylons_color: #f89929;*/
@@ -49,32 +49,6 @@ html lang="en"
           border-bottom:0.1em solid;
           color: $pylons_blue;
           }
-        .slide {
-          &:after {
-            font-family: 'Love Ya Like A Sister', cursive;
-            color: darken($pylons_color, 30%);
-            text-shadow: 2px 2px #000;
-          }
-          // Current
-          &:target {
-            &:before {
-              box-shadow:
-                0 0 0 1px darken($pylons_color, 10%),
-                0 0 0 10px $pylons_color,
-                0 20px 50px rgba($grey, 0.6);
-              @media (max-width:$break) {
-                box-shadow:
-                  0 0 0 1px darken($pylons_color, 10%),
-                  0 0 0 10px $pylons_color,
-                  0 20px 50px rgba($grey, 0.6);
-                }
-              }
-            &:after {
-              text-shadow:0 1px 1px rgba($grey, 0.6);
-              color:$pylons_color;
-              }
-            }
-        }
       }
       img.photo_border {
           box-shadow:
@@ -291,7 +265,7 @@ html lang="en"
             i.red.icon.icon-magic
           li.next Powered by
             ,
-            img src="pylons.ico" alt="",
+            img src="pylons.png" alt="",
             Pyramid
     
     section.slide: div
