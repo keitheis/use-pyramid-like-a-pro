@@ -251,20 +251,12 @@ html lang="en"
         p.author
           a href="http://quest.keitheis.org" Keith Yang
         p
-          span.white-text
-            , @keitheis
-        / p
-          span.social.next
-            i.icon.icon-twitter.icon-light
-            i.icon.icon-linkedin.icon-light
-            i.icon.icon-google-plus.icon-light
-            i.icon.icon-facebook.icon-light
-            i.icon.icon-github.icon-light
+          span.white-text @keitheis
 
         img (src="pictures/pyramid-aliens2-1920X1200.jpg"
-            width="100%"
-            title="Pyramid Aliens Picture by Felix LaFlamme"
-            alt="Pyramid Aliens Picture by Felix LaFlamme")
+             width="100%"
+             title="Pyramid Aliens Picture by Felix LaFlamme"
+             alt="Pyramid Aliens Picture by Felix LaFlamme")
         <!-- Designed and done by Felix LaFlamme, http://www.felixlaflamme.com/ -->
 
     section.slide: div
@@ -292,18 +284,14 @@ html lang="en"
             ,
             i.red.icon.icon-shopping-cart
           li.next
-            i.red.icon.icon-rotate-right
-            ,
-            Re-built on Nov.2012,
-            ,
-            Apr. 2013 online
+            i.red.icon.icon-rotate-right,
+            Re-built on Nov.2012, Apr. 2013 online
           li.next Agile style
             ,
             i.red.icon.icon-magic
           li.next Powered by
             ,
-            img src="pylons.ico" alt=""
-            ,
+            img src="pylons.ico" alt="",
             Pyramid
     
     section.slide: div
@@ -325,15 +313,12 @@ html lang="en"
     
     section.slide.shout.medium: div
         h2
-          Choice
-          ,
+          , Choice
           i.icon.icon-hand-left
           br
-          span.next
-            Like
+          span.next Like
           br
-          span.next
-            Human Being
+          span.next Human Being
     
     section.slide: div
         h2 Being What?
@@ -361,7 +346,6 @@ html lang="en"
           li 
             -for name in ['SQL', 'NoSQL', 'ORM', 'Query Helper', 'ALL REDIS?']
               code = name
-                
           li
             code Message Queues
             ,
@@ -379,13 +363,10 @@ html lang="en"
           br Architecture.
 
     section.slide.shout: div
-        h2
-          That's why
+        h2 That's why
           br
-          mark.mark.next
-            Flexibility
-          br
-          Counts
+            mark.mark.next Flexibility
+          br Counts
 
     section.slide: div
         h2, The Power of Pyramid
@@ -411,8 +392,7 @@ html lang="en"
             br from Pyramid 1.3
         
     section.slide: div
-        h2, What Pyramid is
-          <mark>NOT</mark>
+        h2, What Pyramid is <mark>NOT</mark>
         p
           Not the first web framework
           br you should learn together with
@@ -446,8 +426,7 @@ html lang="en"
           
     section.slide.shout: div
         h2 I say:
-          br
-          “Just use Python”
+          br “Just use Python”
         img.pull-right src="pictures/pythocat.png" width="28%" alt="pythocat icon on github"
         p.note.next
           i.icon.icon-remove
@@ -459,11 +438,10 @@ html lang="en"
         p
           ul
             li Understand Pyramid Request
-            li Separated logic of views, data and business
+            li Separated logic of views, data and business logics
         p.note.next
           For any MVC-like Framework
-          br
-          M or C is not for business logic
+          br M or C is not for business logic
 
     section.slide: div
         h2 Fundamental Pyramid School (cont.)
@@ -485,7 +463,7 @@ html lang="en"
           li To name a few:
             ul
               li MongoDB, Riak, Cassandra, Redis, Hadoop, ...
-          li, When you arrived here you'll learn these class. 
+          li, When you arrived there you'll learn these class. 
             br Before that, just keep calm on them.
 
     section.slide: div
@@ -528,19 +506,18 @@ html lang="en"
             a href="http://mosky.tw/" mosky
             , , also on
             a href="https://github.com/moskytw/mosql"
-              i.icon.icon-github
-            ,
+              i.icon.icon-github,
             span.next
-              | (yesterday v0.1.6)
+              (yesterday v0.1.6)
           li Pure SQL Dialects: hard code driver Query
             br
-            | (sqlite3, psycopg2, mysql-python, ...)
+              (sqlite3, psycopg2, mysql-python, ...)
           li Pure NoSQL Dialects
 
     section.slide: div
         h2 Templates: Mako or Jinja2
         ul
-          li Mako - pythonic
+          li Mako Templates - pythonic
             span.next
               |, or not, depending on you with its nature
             br by Mike Bayer (author of Alembic)
@@ -549,7 +526,7 @@ html lang="en"
             br, by
               a href="http://lucumr.pocoo.org/"
                 Armin Ronacher
-              | , also Flask author 
+              |, also Flask author 
             ol
               li Elegant
               li Strict, more or less, magic
@@ -562,17 +539,15 @@ html lang="en"
               i.alien.icon.icon-github
           li Ported from Slim template
           li Clean HTML usage
-          li Built on Mako
+          li Built on top of Mako Templates
           li
             code Fun
             span.next and half hell on debug mode
         p.note
           , Guess what?
-          span.next
-            , You'll learn how to guess by using it
+          span.next You'll learn how to guess by using it
+            ,
             i.icon.icon-meh
-
-
                 
     section.slide: div
         h2 Templates (cont.) - Plim
@@ -603,8 +578,6 @@ html lang="en"
           li RebbitMQ, ZeroMQ
           li Redis, memcached
           li Beaker, retools (both by <code>Ben Bangert</code>, Pylons 1 author)
-        p.note.next
-          Pylons 2? You got it: Pyramid.
 
     section.slide: div
         h2 Oh, Sentry
@@ -619,7 +592,7 @@ html lang="en"
         h2 My better practices
         p
           ul
-            li Separate the (DB) models and behaviors.
+            li Separate the (DB) models and behaviors
             li.next Reproduce-able development database (Fixtures)
             li.next Development mode optimization
             li.next
@@ -636,8 +609,7 @@ html lang="en"
         p
           ul
             li Explicit architecture (lib, tasks, schemas ... folders)
-              br
-              | with explicit nameing
+              br with explicit nameing
             li.next Focus on a utc module handles datetime & timezone
             li.next Fundamental doc: README and doc/**/*.rst
             li.next Avoid mess sys or deploy stuff in code repository
@@ -680,13 +652,6 @@ html lang="en"
                 from .views.notfound import NotFoundView
             config.add_notfound_view(NotFoundView)""")
 
-    / section.Picture.slide.cover: div
-        h2
-          mark
-            Debug mode (cont.)
-        a style="background-color:black; filter:alpha(opacity=100); display:block; opacity:1; width:100%"
-          img style="opacity:0.77; filter:alpha(opacity=77);" src="pictures/debug_screen.png" width="100%" alt="" 
-
     section.slide.cover: div
         img src="pictures/debugtoolbar.png" width="100%" alt="Debugtoolbar"
     
@@ -698,8 +663,7 @@ html lang="en"
         h2 Logging in the flow
         img.photo_border src="pictures/debug_log.png" width="100%" alt="Logging on Debugtoolbar"
     
-    section.slide
-      div
+    section.slide: div
         h2 Debug Debugtoolbar
         == formatters.code('python', """
           # Disable development performance killer
@@ -711,9 +675,7 @@ html lang="en"
               #pyramid_debugtoolbar.panels.routes.RoutesDebugPanel""")
 
     section.slide: div
-        h2, Before your first
-          mark
-            | release
+        h2, Before your first <mark>release</mark>
         p
           span.icon-stack
             i.icon.blue.icon-sign-blank.icon-stack-base
@@ -721,8 +683,8 @@ html lang="en"
           ,
           Practice
         ul
-          li Pshell (the force on production, use it carefully)
-          li Play Pyramid scripts
+          li pshell (the force on production, use it carefully)
+          li Play Command-Line Pyramid
           li Alembic Database Migration scripts (if using SQLAlchemy)
 
     section.slide.shout.medium: div
@@ -747,24 +709,16 @@ html lang="en"
     section.slide.shout.x-small: div
         h2
           , alembic -c dev.ini
-          br
-          , revision 
-          mark
-            | --autogenerate
-          br
-          , -m "magic hour"
+          br, revision <mark>--autogenerate</mark>
+          br -m "magic hour"
 
     section.slide: div
         h2 Encourage Refactor and Clean Code 
         ul
-          li.next Feature development helps some.
-          li.next Clean code, testing and refactor helps
-            ,
-            mark
-              | everyone.
+          li Feature development helps some
+          li Clean code, testing and refactor help <mark>everyone</mark>
 
-    section.slide
-      div
+    section.slide: div
         h2 From Web app to API
         ul
           li Reusable permission control
@@ -773,7 +727,6 @@ html lang="en"
           @view_defaults(renderer='api', permission='account')
           class APIResourceView(APIBaseView, APIPagingMixin):
               ...""")
-          
 
     section.slide: div
         h2 From Web app to API (cont.)
@@ -837,8 +790,7 @@ html lang="en"
       a href="https://github.com/keitheis/use-pyramid-like-a-pro" Fork me on Github
 
     <!-- To hide progress bar from entire presentation just remove "progress" element.  -->
-    .progress
-      div
+    .progress: div
 
     script src="shower/shower.min.js" 
     script
