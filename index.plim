@@ -583,7 +583,7 @@ html lang="en"
         p
           ul
             li Explicit architecture (lib, tasks, schemas ... folders)
-              br with explicit nameing
+              br with explicit naming
             li.next Focus on a utc module handles datetime & timezone
             li.next Fundamental doc: README and doc/**/*.rst
             li.next Avoid mess sys or deploy stuff in code repository
