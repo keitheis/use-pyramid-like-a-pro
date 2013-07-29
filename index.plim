@@ -201,9 +201,9 @@ html lang="en"
       .linenodiv {
         margin-right: 0.6em;
       }
-      .slide pre code {
+      .slide pre {
         font-size: 1.2em;
-        font-family: 'Ubuntu Mono', sans-serif;
+        font-family: 'Ubuntu Mono', monospace;
         &.bigger {
           font-size: 1.3em;
         }
@@ -525,11 +525,15 @@ html lang="en"
                 
     section.slide: div
         h2 Templates (cont.) - Plim
-        == formatters.code('python', """
-            -for row in ['apple', 'banana', 'pineapple']
-              tr
-                -for col in ['juice', 'muffin', 'pie']
-                  td ${row.capitalize()} ${col}""")
+        pre
+          -py
+            code = """
+              table: -for row in ['apple', 'banana', 'pineapple']
+                tr: -for col in ['juice', 'muffin', 'pie']
+                  td ${row.capitalize()} ${col}
+            """
+          == formatters.code('python', code)
+
         p.note.next
           -text filter="h"
             That's all. No </blah blah things>.
