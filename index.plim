@@ -525,14 +525,13 @@ html lang="en"
                 
     section.slide: div
         h2 Templates (cont.) - Plim
-        pre
-          -py
-            code = """
-              table: -for row in ['apple', 'banana', 'pineapple']
-                tr: -for col in ['juice', 'muffin', 'pie']
-                  td ${row.capitalize()} ${col}
-            """
-          == formatters.code('python', code)
+        -py
+          code = """
+            table: -for row in ['apple', 'banana', 'pineapple']
+              tr: -for col in ['juice', 'muffin', 'pie']
+                td ${row.capitalize()} ${col}
+          """
+        == formatters.code('python', code)
 
         p.note.next
           -text filter="h"
@@ -540,14 +539,19 @@ html lang="en"
 
     section.slide: div
         h2 Templates (cont.) - Chameleon
-        p
+        -py
+          code = """
+          <table>
+            <tr tal:repeat="row 'apple', 'banana', 'pineapple'">
+              <td tal:repeat="col 'juice', 'muffin', 'pie'">
+                 ${row.capitalize()} ${col}
+              </td>
+            </tr>
+          </table>
+          """
+        == formatters.code('genshi', code)
+        p.note.next
           ZPT, Kid or Genshi lovers should give it a look
-        == formatters.code('genshi', """
-          <tr tal:repeat="row 'apple', 'banana', 'pineapple'">
-            <td tal:repeat="col 'juice', 'muffin', 'pie'">
-               ${row.capitalize()} ${col}
-            </td>
-          </tr>""")
 
     section.slide: div
         h2 Too many to introduce (again)
