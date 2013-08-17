@@ -1,4 +1,4 @@
--namespace module="utils.formatters" name="formatters" inheritable="True"
+-namespace module="plimsolls.formatters.code2html" name="code2html"
 
 doctype 5
 html lang="en"
@@ -531,7 +531,7 @@ html lang="en"
               tr: -for col in ['juice', 'muffin', 'pie']
                 td ${row.capitalize()} ${col}
           """
-        == formatters.code('python', code)
+        == code2html.reformat('python', code)
 
         p.note.next
           -text filter="h"
@@ -549,7 +549,7 @@ html lang="en"
             </tr>
           </table>
           """
-        == formatters.code('genshi', code)
+        == code2html.reformat('genshi', code)
         p.note.next
           ZPT, Kid or Genshi lovers should give it a look
 
@@ -605,19 +605,23 @@ html lang="en"
 
     section.slide: div
         h2 My worser lesson 1
-        == formatters.code('python', """
+        -py
+          code = """
           def ugly_customized_routes(config, resource_route,
                                      path=None,
                                      actions="ICRUD",
                                      resource_name=None):
-              ...""")
+              ..."""
+        == code2html.reformat('python', code)
         p.note
           Not aesthetic route helper
 
     section.slide: div
         h2 My worser lesson 2
-        == formatters.code('python', """
-            print("This is too embarrassing to print")""")
+        -py
+          code = """
+          print("This is too embarrassing to print")"""
+        == code2html.reformat('python', code)
         p.note
           , Lacking CI tests
           i.icon.icon-meh title="meh!"
@@ -625,14 +629,16 @@ html lang="en"
     section.slide: div
         h2 Debug mode
         .smaller-font
-        == formatters.code('python', """
+        -py
+          code = """
             if debug_notfound_route:
                 from .views.notfound import (
                   NotFoundDebugView as NotFoundView
                 )
             else:
                 from .views.notfound import NotFoundView
-            config.add_notfound_view(NotFoundView)""")
+            config.add_notfound_view(NotFoundView)"""
+        == code2html.reformat('python', code)
 
     section.slide.cover: div
         img src="pictures/debugtoolbar.png" width="100%" alt="Debugtoolbar"
@@ -647,14 +653,16 @@ html lang="en"
     
     section.slide: div
         h2 Debug Debugtoolbar
-        == formatters.code('python', """
+        -py
+          code = """
           # Disable development performance killer
           debugtoolbar.panels =
               pyramid_debugtoolbar.panels.sqla.SQLADebugPanel
               ...
               #pyramid_debugtoolbar.panels.introspection.IntrospectionDebugPanel
               #pyramid_debugtoolbar.panels.tweens.TweensDebugPanel
-              #pyramid_debugtoolbar.panels.routes.RoutesDebugPanel""")
+              #pyramid_debugtoolbar.panels.routes.RoutesDebugPanel"""
+        == code2html.reformat('python', code)
 
     section.slide: div
         h2, Before your first <mark>release</mark>
@@ -682,9 +690,11 @@ html lang="en"
            a href="http://techspot.zzzeek.org/"
             Mike Bayer (author of SQLAlchemy)
           li Use op and sa instead your defined Models
-          == formatters.code('python', """
+          -py
+            code = """
               from alembic import op
-              import sqlalchemy as sa""")
+              import sqlalchemy as sa"""
+          == code2html.reformat('python', code)
         p.note.next
           Because YMWV (Your model WILL vary) between revisions.
 
@@ -705,34 +715,41 @@ html lang="en"
         ul
           li Reusable permission control
           li Customized API render (extra work on JSON response)
-        == formatters.code('python', """
+        -py
+          code = """
           @view_defaults(renderer='api', permission='account')
           class APIResourceView(APIBaseView, APIPagingMixin):
-              ...""")
+              ..."""
+        == code2html.reformat('python', code)
 
     section.slide: div
         h2 From Web app to API (cont.)
         ul
           li Views for API Forbidden and NotFound
-        == formatters.code('python', """
+        -py 
+          code = """
           config.add_forbidden_view(
             APIForbiddenView, path_info='/api/')
           config.add_notfound_view(
-            APINotFoundView, path_info='/api/')""")
+            APINotFoundView, path_info='/api/')"""
+        == code2html.reformat('python', code)
         
         p.note
           | (no months or years needed for working)
 
     section.slide: div
         h2 API V2 Routes Ready
-        == formatters.code('python', """
-          from .api.routes import api_routes
-          config.include(api_routes, '/api/v1')""")
-        == formatters.code('python', """
-          from .api.v1.routes import api_routes as api_v1_routes
-          config.include(api_v1_routes, '/api/v1')
-          from .api.routes import api_routes as api_v2_routes
-          config.include(api_v2_routes, '/api/v2')""")
+        -py
+          code1 = """
+            from .api.routes import api_routes
+            config.include(api_routes, '/api/v1')"""
+          code2 = """
+            from .api.v1.routes import api_routes as api_v1_routes
+            config.include(api_v1_routes, '/api/v1')
+            from .api.routes import api_routes as api_v2_routes
+            config.include(api_v2_routes, '/api/v2')"""
+        == code2html.reformat('python', code1)
+        == code2html.reformat('python', code2)
 
     section.slide: div
         figure 

@@ -1,1 +1,1 @@
-Plim>=0.7.12
+plimsolls>=0.1
